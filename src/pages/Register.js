@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 
 import { useSelector, useDispatch } from "react-redux";
 import { registerUser, loginUser } from "../features/user/userSlice";
+import { useNavigate } from "react-router";
 
 const initialState = {
   name: "",
@@ -15,11 +16,13 @@ const initialState = {
 };
 
 const Register = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const { isLoading, user } = useSelector((state) => state.user);
   const [values, setValues] = useState(initialState);
 
   // redux toolkit and useNavigate later
+
   const toggleMember = () => {
     return setValues({ ...values, isMember: !values.isMember });
   };
@@ -44,6 +47,16 @@ const Register = () => {
     }
     dispatch(registerUser({ name, email, password }));
   };
+
+  //Redirect to home page after login or register
+  useEffect(() => {
+    if (user) {
+      setTimeout(() => {
+        navigate("/");
+      }, 3000);
+    }
+  }, [user, navigate]);
+
   return (
     <Wrapper className="full-page">
       <form className="form" onSubmit={onSubmit}>
