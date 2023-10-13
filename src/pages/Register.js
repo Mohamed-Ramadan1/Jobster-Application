@@ -74,10 +74,12 @@ const Register = () => {
           value={values.password}
         />
 
-        <button className="btn btn-block">
-          {values.isMember ? "Login" : "Submit"}
+        <button className="btn btn-block" disabled={isLoading}>
+          {isLoading ? "Loading..." : values.isMember ? "Login" : "Register"}
         </button>
-        <button className="btn btn-block member-btn">Guest User</button>
+        <button className="btn btn-block member-btn" disabled={isLoading}>
+          Guest User
+        </button>
         <p>
           {values.isMember ? "Not a member yet?" : "Already a member?"}
 
