@@ -4,6 +4,9 @@ import { FormRow, Logo } from "../components";
 import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 
+import { useSelector, useDispatch } from "react-redux";
+import { registerUser, loginUser } from "../features/user/userSlice";
+
 const initialState = {
   name: "",
   email: "",
@@ -12,6 +15,8 @@ const initialState = {
 };
 
 const Register = () => {
+  const dispatch = useDispatch();
+  const { isLoading, user } = useSelector((state) => state.user);
   const [values, setValues] = useState(initialState);
 
   // redux toolkit and useNavigate later
@@ -33,6 +38,11 @@ const Register = () => {
       toast.error("Please fill out all form fields");
       return;
     }
+    if (isMember) {
+      dispatch(loginUser({ email: email, password: password }));
+      return;
+    }
+    dispatch(registerUser({ name, email, password }));
   };
   return (
     <Wrapper className="full-page">
