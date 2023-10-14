@@ -8,10 +8,10 @@ const Profile = () => {
   const { isLoading, user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const [userData, setUserData] = useState({
-    name: user.name,
-    lastName: user.lastName,
-    email: user.email,
-    location: user.location,
+    name: user?.name || "",
+    email: user?.email || "",
+    lastName: user?.lastName || "",
+    location: user?.location || "",
   });
 
   const handleSubmit = (e) => {
