@@ -16,3 +16,4 @@ export { default as ChartsContainer } from "./ChartsContainer";
 export { default as StatItem } from "./StatItem";
 export { default as AreaChartComponent } from "./AreaChartComponent";
 export { default as BarChartComponent } from "./BarChartComponent";
+export { default as PageBtnContainer } from "./PageBtnContainer";
