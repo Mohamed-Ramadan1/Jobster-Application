@@ -90,7 +90,15 @@ const Register = () => {
         <button className="btn btn-block" disabled={isLoading}>
           {isLoading ? "Loading..." : values.isMember ? "Login" : "Register"}
         </button>
-        <button className="btn btn-block member-btn" disabled={isLoading}>
+        <button
+          className="btn btn-block btn-hipster"
+          disabled={isLoading}
+          onClick={() =>
+            dispatch(
+              loginUser({ email: "testUser@test.com", password: "secret" })
+            )
+          }
+        >
           Guest User
         </button>
         <p>
